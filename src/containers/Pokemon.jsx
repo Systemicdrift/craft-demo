@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Pokemon from '../components/Pokemon';
 import { getPokemon } from '../services/pokemonService';
 import { Link } from "react-router-dom";
+import { useAppDispatch } from '../context/AppContext';
 
 export default function PokemonContainer(props) {
+    const dispatch = useAppDispatch()
     const [pokemon, setPokemon] = useState({});
     const fetchData = async () => {
+        // console.log('props.pokemon.url:', props.pokemon)
         await getPokemon(props.pokemon.url)
             .then(res => res.json())
             .then(data => {
@@ -21,7 +24,7 @@ export default function PokemonContainer(props) {
 
     return (
         <div className="pokemon-container">
-            <Link to={`/details/${pokemon.id}`}>
+            <Link to={`/details/${pokemon.id}`} onClick={() => dispatch({type: 'SET_CURRENT_POKEMON', payload:pokemon})}>
                 <Pokemon pokemon={pokemon} />
             </Link>
         </div>
