@@ -1,4 +1,5 @@
 import React from 'react';
+import './Pokemon.scss';
 
 export default function Pokemon(props) {
     if (props.pokemon.name) {
