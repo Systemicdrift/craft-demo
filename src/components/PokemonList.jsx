@@ -1,5 +1,5 @@
 import React from 'react';
-import Pokemon from './Pokemon';
+import Pokemon from '../containers/Pokemon';
 
 export default function PokemonList(props) {
     if (props.pokemons === undefined) {

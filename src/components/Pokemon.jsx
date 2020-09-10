@@ -5,6 +5,7 @@ export default function Pokemon(props) {
         return (
             <div className="card-container">
                 <div className="card">
+                    <img className="card-image" src={ props.pokemon.sprites.front_default } alt={ props.pokemon.name } />
                     <h3 className="card-name">{ props.pokemon.name }</h3>
                 </div>
             </div>
