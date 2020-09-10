@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PokemonListContainer from './containers/PokemonList';
-import PokemonDetailContainer from './containers/PokemonDetail';
+import PokemonDetailsContainer from './containers/PokemonDetails';
 import './App.scss';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
                     </div>
                 </div>
                 <Route path="/" exact component={PokemonListContainer} />
-                <Route path="/details/:id" component={PokemonDetailContainer} />
+                <Route path="/details/:id" component={PokemonDetailsContainer} />
             </Router>
         </div>
     </div>
