@@ -1,5 +1,6 @@
 import React from 'react';
 import { usePokemonState } from '../context/AppContext';
+import './PokemonDetails.scss';
 
 export default function PokemonDetails(props) {
     const pokemon = props.pokemon;
@@ -27,12 +28,12 @@ export default function PokemonDetails(props) {
                         </dl>
                     </div>
 
-                    <div className="row">
+                    <div className="row description">
                         { mockText }
                     </div>
 
                 </div>
-                <div className="col-9">
+                <div className="col-8">
                     map goes here...
                     {   // was not able to get map component working...
                         // props.locations && props.locations.length ? <Map locations={props.locations} zoomLevel={15} /> : <div />

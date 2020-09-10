@@ -1,0 +1,31 @@
+.pokemon-detail-container {
+    dt {
+        float: left;
+        padding: 0;
+        margin: 0
+    }
+    dd {
+        float: left;
+        padding: 0;
+        margin: 0
+    }
+
+    .abilities-title {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+    .abilities {
+        padding: 10px;
+    }
+
+    .pokemon-name {
+        text-transform: capitalize;
+        padding: 5px;
+    }
+
+    .description {
+        text-align: justify;
+    }
+}
+
