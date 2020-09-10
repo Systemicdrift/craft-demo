@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import { getPokemons } from '../services/pokemonService';
+import PokemonList from '../components/PokemonList';
 
 export default function PokemonListContainer() {
     const [pokemons, setPokemons] = useState([]);
@@ -40,7 +41,7 @@ export default function PokemonListContainer() {
             <div className="search-container">
                 <input type="text" placeholder="Search" onChange={search} />
             </div>
-            {/* <PokemonList pokemons={pokemons} /> */}
+            <PokemonList pokemons={pokemons} />
         </div>
     );
 }
