@@ -6,8 +6,7 @@ export async function getPokemons(url="") {
     if (url !== "") {
         return fetch(url);
     }
-    // console.log("fetching ", pokeApiURL);
-    // return fetch(`${pokeApiURL}`);
+    return fetch(`${pokeApiURL}?offset=0&limit=151"`);
 }
 
 export function getPokemon(url="") {
