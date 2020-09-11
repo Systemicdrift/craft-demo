@@ -4,7 +4,7 @@ export const AppContext = createContext();
 export const AppDispatchContext = createContext();
 
 const initState = {
-    pokemons: [],
+    pokemonList: [],
     currentPokemon: {},
     savedPokemon: [],
     currentURL: ""
@@ -14,21 +14,21 @@ const appReducer = (state, action) => {
     switch (action.type) {
         case "SET_CURRENT_POKEMON":
             return {
-                pokemons: state.pokemons,
+                pokemonList: state.pokemonList,
                 currentPokemon: action.payload,
                 savedPokemon: state.savedPokemon,
                 currentURL: state.currentURL
             }
         case "SET_CURRENT_URL":
             return {
-                pokemons: state.pokemons,
+                pokemonList: state.pokemonList,
                 currentPokemon: state.currentPokemon,
                 savedPokemon: state.savedPokemon,
                 currentURL: action.payload
             }
         case "STORE_POKEMONS":
             return {
-                pokemons: action.payload,
+                pokemonList: action.payload,
                 currentPokemon: state.currentPokemon,
                 savedPokemon: state.savedPokemon,
                 currentURL: state.currentURL
@@ -44,6 +44,11 @@ export const useAppState = () => {
         throw new Error('useCountDispatch must be used within an AppContextProvider')
     }
     return context;
+}
+
+export const usePokemonsState = () => {
+    const context = useAppState();
+    return context.pokemonList;
 }
 
 export const usePokemonState = () => {
