@@ -3,7 +3,6 @@ import { getPokemons } from '../services/pokemonService';
 import PokemonList from '../components/PokemonList';
 
 export default function PokemonListContainer() {
-    // const [pokemons, setPokemons] = useState([]);
     const [pokemonList, setPokemonList] = useState([]);
     const [pokemonToDisplay, setPokemonToDisplay] = useState({
         page: -1,
@@ -50,18 +49,12 @@ export default function PokemonListContainer() {
         addItems();
     }, [pokemonList]);
 
-    useEffect(() => {
-        console.log('asdfasdf', pokemonToDisplay);
-    }, [pokemonToDisplay])
-
     const search = (e) => {
 
     }
 
     const addItems = () => {
-        console.log('in additems', pokemonList)
         if (pokemonList.length !== 0) {
-            console.log('adding items')
             setPokemonToDisplay(prevState => ({
                 page: prevState.page + 1,
                 pokemonToDisplay: prevState.pokemonToDisplay.concat(
@@ -76,12 +69,10 @@ export default function PokemonListContainer() {
       };
 
     const toggleAll = () => {
-        // setPokemons(pokemons);
-        console.log('all')
+        // console.log('all')
     }
     const toggleSaved = () => {
-        // setPokemons(pokemons);
-        console.log('saved')
+        // console.log('saved')
     }
 
     return (
