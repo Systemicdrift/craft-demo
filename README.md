@@ -31,5 +31,6 @@ Launches the test runner in the interactive watch mode.<br />
 
 # Known issues
 
-Google maps barks at you saying some error occurred. It needs a proper dev key and someone to bill. Nothing is "free"
+* Google maps barks at you saying it didn't load correctly. It needs a proper dev key and someone to bill. Nothing is "free". Key was removed because github warns against storing keys.
 
+* When saving pokemon and flipping from all/saved view, the infinite scroll breaks due to some state not being restored properly.
