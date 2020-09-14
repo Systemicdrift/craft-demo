@@ -7,7 +7,7 @@ const initState = {
     pokemonList: [],
     currentPokemon: {},
     savedPokemon: [],
-    currentURL: "",
+    // currentURL: "",
     pokemons: {}
 }
 
@@ -18,31 +18,31 @@ const appReducer = (state, action) => {
                 pokemonList: state.pokemonList,
                 currentPokemon: action.payload,
                 savedPokemon: state.savedPokemon,
-                currentURL: state.currentURL,
+                // currentURL: state.currentURL,
                 pokemons: state.pokemons
             }
-        case "SET_CURRENT_URL":
-            return {
-                pokemonList: state.pokemonList,
-                currentPokemon: state.currentPokemon,
-                savedPokemon: state.savedPokemon,
-                currentURL: action.payload,
-                pokemons: state.pokemons
-            }
+        // case "SET_CURRENT_URL":
+        //     return {
+        //         pokemonList: state.pokemonList,
+        //         currentPokemon: state.currentPokemon,
+        //         savedPokemon: state.savedPokemon,
+        //         currentURL: action.payload,
+        //         pokemons: state.pokemons
+        //     }
         case "STORE_POKEMONS":
             return {
                 pokemonList: action.payload,
                 currentPokemon: state.currentPokemon,
                 savedPokemon: state.savedPokemon,
-                currentURL: state.currentURL,
+                // currentURL: state.currentURL,
                 pokemons: state.pokemons
             }
         case "STORE_POKEMON":
             return {
-                pokemonList: action.payload,
+                pokemonList: state.pokemonList,
                 currentPokemon: state.currentPokemon,
                 savedPokemon: state.savedPokemon,
-                currentURL: state.currentURL,
+                // currentURL: state.currentURL,
                 pokemons: storePokemon(state.pokemons, action.payload)
             }
         default:
@@ -84,10 +84,10 @@ export const usePokemonState = () => {
     return context.currentPokemon;
 }
 
-export const useUrlState = () => {
-    const context = useAppState();
-    return context.currentURL;
-}
+// export const useUrlState = () => {
+//     const context = useAppState();
+//     return context.currentURL;
+// }
 
 export const useAppDispatch = () => {
     const context = useContext(AppDispatchContext);

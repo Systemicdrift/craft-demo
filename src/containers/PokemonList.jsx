@@ -1,14 +1,17 @@
 import React, {useState, useEffect } from 'react';
 import { getPokemons } from '../services/pokemonService';
 import PokemonList from '../components/PokemonList';
+import { useAppDispatch, usePokemonsState } from '../context/AppContext';
 
 export default function PokemonListContainer() {
-    const [pokemonList, setPokemonList] = useState([]);
+    const dispatch = useAppDispatch();
+    const [pokemonList, setPokemonList] = useState(usePokemonsState());
     const [pokemonToDisplay, setPokemonToDisplay] = useState({
         page: -1,
         pokemonToDisplay: [],
     });
     const [isBottom, setIsBottom] = useState(false);
+
 
     // infinite scroll lifted from
     // https://hackernoon.com/builing-an-infinite-scroll-using-react-hooks-pe113urj
@@ -25,18 +28,21 @@ export default function PokemonListContainer() {
         }
     }
 
-    const fetchData = () => {
+    const fetchData = (dispatcher) => {
         getPokemons()
         .then(res => res.json())
         .then(data => {
             setPokemonList(data.results);
+            dispatcher({type: '', payload: data.results});
         });
     }
 
     useEffect(() => {
-        fetchData();
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        if (pokemonList.length === 0) {
+            fetchData(dispatch);
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+        }
     }, []);
 
     useEffect(() => {
@@ -54,6 +60,7 @@ export default function PokemonListContainer() {
     }
 
     const addItems = () => {
+        console.log('pokemlist', pokemonList)
         if (pokemonList.length !== 0) {
             setPokemonToDisplay(prevState => ({
                 page: prevState.page + 1,
