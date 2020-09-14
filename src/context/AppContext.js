@@ -13,28 +13,32 @@ const initState = {
 
 const appReducer = (state, action) => {
     switch (action.type) {
+        case "SAVED_POKEMON_ADD":
+            return {
+                pokemonList: state.pokemonList,
+                currentPokemon: state.currentPokemon,
+                savedPokemon: [...state.savedPokemon, action.payload],
+                pokemons: state.pokemons
+            };
+        case "SAVED_POKEMON_DELETE":
+            return {
+                pokemonList: state.pokemonList,
+                currentPokemon: state.currentPokemon,
+                savedPokemon: state.savedPokemon.filter(pokemon => pokemon.id !== action.payload.id),
+                pokemons: state.pokemons
+            };
         case "SET_CURRENT_POKEMON":
             return {
                 pokemonList: state.pokemonList,
                 currentPokemon: action.payload,
                 savedPokemon: state.savedPokemon,
-                // currentURL: state.currentURL,
                 pokemons: state.pokemons
             }
-        // case "SET_CURRENT_URL":
-        //     return {
-        //         pokemonList: state.pokemonList,
-        //         currentPokemon: state.currentPokemon,
-        //         savedPokemon: state.savedPokemon,
-        //         currentURL: action.payload,
-        //         pokemons: state.pokemons
-        //     }
         case "STORE_POKEMONS":
             return {
                 pokemonList: action.payload,
                 currentPokemon: state.currentPokemon,
                 savedPokemon: state.savedPokemon,
-                // currentURL: state.currentURL,
                 pokemons: state.pokemons
             }
         case "STORE_POKEMON":
@@ -42,7 +46,6 @@ const appReducer = (state, action) => {
                 pokemonList: state.pokemonList,
                 currentPokemon: state.currentPokemon,
                 savedPokemon: state.savedPokemon,
-                // currentURL: state.currentURL,
                 pokemons: storePokemon(state.pokemons, action.payload)
             }
         default:
@@ -84,10 +87,10 @@ export const usePokemonState = () => {
     return context.currentPokemon;
 }
 
-// export const useUrlState = () => {
-//     const context = useAppState();
-//     return context.currentURL;
-// }
+export const useSavedState = () => {
+    const context = useAppState();
+    return context.savedPokemon;
+}
 
 export const useAppDispatch = () => {
     const context = useContext(AppDispatchContext);

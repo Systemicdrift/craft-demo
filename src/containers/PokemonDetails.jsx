@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import PokemonDetails from '../components/PokemonDetails';
 import { getPokemonLocation } from '../services/pokemonService';
-import { usePokemonState } from '../context/AppContext';
+import { usePokemonState, useAppDispatch, useSavedState } from '../context/AppContext';
 
 export default function PokemonDetailsContainer(props) {
     const [locations, setPokemonLocations] = useState({});
     const pokemon = usePokemonState();
-    // console.log(pokemon);
+    const dispatch = useAppDispatch();
+    const savedState = useSavedState();
+    const saved = savedState.find((p) => p.id === pokemon.id);
+    console.log(saved);
     const fetchData = async (id) => {
         await getPokemonLocation(id)
             .then(res => res.json())
@@ -19,11 +22,11 @@ export default function PokemonDetailsContainer(props) {
         fetchData(pokemon.id);
     }, []);
 
-    useEffect(() => {console.log('pokemon locations: ',locations)}, [locations]);
+    // useEffect(() => {console.log('pokemon locations: ',locations)}, [locations]);
 
     return (
         <div className="pokemon-details-container">
-            <PokemonDetails pokemon={pokemon} locations={locations} />
+            <PokemonDetails pokemon={pokemon} locations={locations} dispatch={dispatch} saved={saved} />
         </div>
     );
 }

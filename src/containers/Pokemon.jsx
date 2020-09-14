@@ -11,6 +11,7 @@ export default function PokemonContainer(props) {
         await getPokemon(props.pokemon.url)
             .then(res => res.json())
             .then(data => {
+                data['url'] = props.pokemon.url;
                 setPokemon(data);
                 dispatcher({type: 'STORE_POKEMON', payload: data});
             });
