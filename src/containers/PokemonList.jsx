@@ -68,7 +68,7 @@ export default function PokemonListContainer() {
     }
 
     const addItems = () => {
-        console.log('pokemlist', pokemonList)
+        // console.log('pokemlist', pokemonList)
         if (pokemonList.length !== 0) {
             setPokemonToDisplay(prevState => ({
                 page: prevState.page + 1,

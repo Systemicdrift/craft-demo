@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './PokemonDetails.scss';
+import MapComponent from './Map';
 
 export default function PokemonDetails(props) {
     const pokemon = props.pokemon;
     const dispatch = props.dispatch;
-    console.log('pokemon', props);
+    // console.log('pokemon', props);
     const mockText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     const [checked, setChecked] = useState(Boolean(props.saved));
 
@@ -46,9 +47,8 @@ export default function PokemonDetails(props) {
 
                 </div>
                 <div className="col-8">
-                    map goes here...
-                    {   // was not able to get map component working...
-                        // props.locations && props.locations.length ? <Map locations={props.locations} zoomLevel={15} /> : <div />
+                    {
+                        props.locations && props.locations.length ? <MapComponent locations={props.locations} zoomLevel={15} /> : <div />
                     }
 
                 </div>
