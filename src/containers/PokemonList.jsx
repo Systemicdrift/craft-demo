@@ -61,10 +61,14 @@ export default function PokemonListContainer() {
         const filteredList = pokemonList.filter((val) => {
             return reg.test(val.name);
         });
-        setPokemonToDisplay(prevState => ({
-            pokemonToDisplay: filteredList
-        }));
 
+        setPokemonToDisplay(prevState => ({
+            page: prevState.page,
+            pokemonToDisplay: filteredList.slice(
+                0,
+                (prevState.page + 1) * 30
+            )
+        }));
     }
 
     const addItems = () => {
@@ -85,11 +89,16 @@ export default function PokemonListContainer() {
 
     const toggleAll = () => {
         setPokemonToDisplay(prevState => ({
-            pokemonToDisplay: pokemonList
+            page: prevState.page,
+            pokemonToDisplay: pokemonList.slice(
+                0,
+                (prevState.page + 1) * 30
+            )
         }));
     }
     const toggleSaved = () => {
         setPokemonToDisplay(prevState => ({
+            page: prevState.page,
             pokemonToDisplay: saved
         }));
     }
