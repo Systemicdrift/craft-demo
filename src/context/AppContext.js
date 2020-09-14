@@ -7,7 +7,8 @@ const initState = {
     pokemonList: [],
     currentPokemon: {},
     savedPokemon: [],
-    currentURL: ""
+    currentURL: "",
+    pokemons: {}
 }
 
 const appReducer = (state, action) => {
@@ -17,26 +18,44 @@ const appReducer = (state, action) => {
                 pokemonList: state.pokemonList,
                 currentPokemon: action.payload,
                 savedPokemon: state.savedPokemon,
-                currentURL: state.currentURL
+                currentURL: state.currentURL,
+                pokemons: state.pokemons
             }
         case "SET_CURRENT_URL":
             return {
                 pokemonList: state.pokemonList,
                 currentPokemon: state.currentPokemon,
                 savedPokemon: state.savedPokemon,
-                currentURL: action.payload
+                currentURL: action.payload,
+                pokemons: state.pokemons
             }
         case "STORE_POKEMONS":
             return {
                 pokemonList: action.payload,
                 currentPokemon: state.currentPokemon,
                 savedPokemon: state.savedPokemon,
-                currentURL: state.currentURL
+                currentURL: state.currentURL,
+                pokemons: state.pokemons
+            }
+        case "STORE_POKEMON":
+            return {
+                pokemonList: action.payload,
+                currentPokemon: state.currentPokemon,
+                savedPokemon: state.savedPokemon,
+                currentURL: state.currentURL,
+                pokemons: storePokemon(state.pokemons, action.payload)
             }
         default:
             return state;
     }
 }
+
+const storePokemon = (state, payload) => {
+    let newState = Object.assign({}, state);
+    newState[payload.name] = payload;
+    return newState;
+}
+
 
 export const useAppState = () => {
     const context = useContext(AppContext);
@@ -44,6 +63,15 @@ export const useAppState = () => {
         throw new Error('useCountDispatch must be used within an AppContextProvider')
     }
     return context;
+}
+
+export const usePokemon = (name) => {
+    const context = useAppState();
+    if (name in context.pokemons) {
+        return context.pokemons[name];
+    } else {
+        return null;
+    }
 }
 
 export const usePokemonsState = () => {
