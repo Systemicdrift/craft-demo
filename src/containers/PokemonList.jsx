@@ -4,6 +4,7 @@ import PokemonList from '../components/PokemonList';
 import { useAppDispatch, usePokemonsState, useSavedState } from '../context/AppContext';
 
 export default function PokemonListContainer() {
+    const perPage = 30;
     const dispatch = useAppDispatch();
     const saved = useSavedState();
     const [pokemonList, setPokemonList] = useState(usePokemonsState());
@@ -66,7 +67,7 @@ export default function PokemonListContainer() {
             page: prevState.page,
             pokemonToDisplay: filteredList.slice(
                 0,
-                (prevState.page + 1) * 30
+                (prevState.page + 1) * perPage
             )
         }));
     }
@@ -78,8 +79,8 @@ export default function PokemonListContainer() {
                 page: prevState.page + 1,
                 pokemonToDisplay: prevState.pokemonToDisplay.concat(
                     pokemonList.slice(
-                        (prevState.page + 1) * 30,
-                        (prevState.page + 1) * 30 + 30,
+                        (prevState.page + 1) * perPage,
+                        (prevState.page + 1) * perPage + perPage,
                     ),
                 ),
             }));
@@ -92,7 +93,7 @@ export default function PokemonListContainer() {
             page: prevState.page,
             pokemonToDisplay: pokemonList.slice(
                 0,
-                (prevState.page + 1) * 30
+                (prevState.page + 1) * perPage
             )
         }));
     }
