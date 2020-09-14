@@ -41,7 +41,7 @@ const MapComponent = withScriptjs(withGoogleMap(Map))
 
 export default ({ locations, zoomLevel }) => (
     <MapComponent
-    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhdhpC9jydNhsUXLrAokV4V-PEkU2O19Y&v=3.exp&libraries=geometry,drawing,places"
+    googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
     loadingElement={<div style={{ height: `100%` }} />}
     containerElement={<div style={{ height: `500px`, width: '600px' }} />}
     mapElement={<div style={{ height: `100%` }} />}
