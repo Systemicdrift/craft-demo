@@ -56,6 +56,15 @@ export default function PokemonListContainer() {
     }, [pokemonList]);
 
     const search = (e) => {
+        const str = e.target.value;
+        const reg = new RegExp(str, "gi");
+        const filteredList = pokemonList.filter((val) => {
+            return reg.test(val.name);
+        });
+        setPokemonToDisplay(prevState => ({
+            page: prevState.page + 1,
+            pokemonToDisplay: filteredList
+        }));
 
     }
 
@@ -66,11 +75,11 @@ export default function PokemonListContainer() {
                 page: prevState.page + 1,
                 pokemonToDisplay: prevState.pokemonToDisplay.concat(
                     pokemonList.slice(
-                    (prevState.page + 1) * 30,
-                    (prevState.page + 1) * 30 + 30,
+                        (prevState.page + 1) * 30,
+                        (prevState.page + 1) * 30 + 30,
+                    ),
                 ),
-            ),
-          }));
+            }));
           setIsBottom(false);
         }
       };
